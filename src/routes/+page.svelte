@@ -1,16 +1,30 @@
-<h1>Welcome</h1>
+<script lang="ts">
+	import Login from '$lib/components/Login.svelte';
+</script>
 
-<form method="post" action="?/login">
-	<input type="hidden" name="_csrf" value="todo" />
-	<div>
-		<label for="username">Username</label>
-		<input type="text" id="username" name="username" required />
-	</div>
+<Login />
 
-	<div>
-		<label for="password">Password</label>
-		<input type="password" id="password" name="password" required />
-	</div>
+<style>
+	:global(*) {
+		box-sizing: border-box;
+		font-family: 'DM Sans', sans-serif;
+	}
 
-	<button type="submit">Login</button>
-</form>
+	:global(html, body) {
+		height: 100%;
+	}
+
+	:global(body) {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	:global(input) {
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		padding: 4px;
+	}
+</style>
