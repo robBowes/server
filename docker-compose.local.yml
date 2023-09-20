@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14.6-alpine
+    container_name: db
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      DB_CONNECTION: pgsql://user:pass@localhost:5432/pgsql
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+      POSTGRES_DB: pgsql
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+    driver: local

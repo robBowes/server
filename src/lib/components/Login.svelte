@@ -28,9 +28,4 @@
 		gap: 8px;
 		margin-bottom: 32px;
 	}
-
-	label {
-		display: block;
-		margin-bottom: 4px;
-	}
 </style>

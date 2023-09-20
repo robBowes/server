@@ -28,4 +28,8 @@
 		flex-direction: column;
 		align-items: flex-start;
 	}
+	label {
+		display: block;
+		margin-bottom: 4px;
+	}
 </style>
