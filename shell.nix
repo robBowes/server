@@ -10,5 +10,6 @@ pkgs.mkShell {
     pkgs.tmux
     pkgs.docker
     pkgs.docker-compose
+    pkgs.caddy
   ];
 }
