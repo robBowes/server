@@ -22,6 +22,22 @@ services:
       - '8001:3000'
     environment:
       CONNECTION_STRING: pgsql://user:${PASS}@db:5432/pgsql
+
+      version: '3'
+  caddy:
+    image: caddy:latest
+    container_name: my_caddy
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+
 volumes:
   pgdata:
     driver: local
+  caddy_data:
+  caddy_config:
