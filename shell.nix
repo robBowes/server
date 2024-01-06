@@ -11,5 +11,8 @@ pkgs.mkShell {
     pkgs.docker
     pkgs.docker-compose
     pkgs.caddy
+    pkgs.qrencode
+    pkgs.wireguard-tools
+    pkgs.wireguard-go
   ];
 }
