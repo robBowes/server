@@ -1,16 +1,13 @@
 import { sql, type Kysely } from 'kysely';
 
+// adds a session table to track user sessions
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function up(db: Kysely<any>): Promise<void> {
-	//add the uuid extension
-	await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`.execute(db);
-
 	db.schema
-		.createTable('user')
+		.createTable('session')
 		.addColumn('id', 'uuid', (col) => col.primaryKey().defaultTo(sql`uuid_generate_v4()`))
-		.addColumn('name', 'text')
-		.addColumn('email', 'text', (col) => col.notNull().unique())
-		.addColumn('password', 'text')
+		.addColumn('user_id', 'uuid', (col) => col.references('user.id').notNull())
 		.addColumn('created_at', 'timestamp')
 		.addColumn('updated_at', 'timestamp')
 		.addColumn('deleted_at', 'timestamp')
@@ -19,8 +16,5 @@ export async function up(db: Kysely<any>): Promise<void> {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function down(db: Kysely<any>): Promise<void> {
-	//drop the uuid extension
-	await sql`DROP EXTENSION IF EXISTS "uuid-ossp"`.execute(db);
-
-	db.schema.dropTable('user').execute();
+	db.schema.dropTable('session').execute();
 }

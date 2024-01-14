@@ -1,15 +1,18 @@
-<script>
+<script lang="ts">
+	import { enhance } from '$app/forms';
 	import Input from './Input.svelte';
+
+	export let form: import('../../routes/$types').ActionData;
 </script>
 
 <div class="left-side">
 	<h1>Welcome</h1>
 </div>
 
-<form method="post" action="?/login">
+<form method="post" action="?/login" use:enhance>
 	<input type="hidden" name="_csrf" value="todo" />
 	<div class="login-fields">
-		<Input name="username" label="Login:" />
+		<Input name="email" label="Login:" error={form?.email} />
 		<Input name="password" label="Password:" type="password" />
 	</div>
 

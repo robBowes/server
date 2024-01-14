@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Login from '$lib/components/Login.svelte';
+
+	export let form;
 </script>
 
-<Login />
+<Login {form} />
 
 <style>
 	:global(*) {

@@ -8,19 +8,22 @@
 	export let name: string;
 	export let label: string;
 	export let type: 'text' | 'password' = 'text';
+	export let error: string | undefined = undefined;
 </script>
 
-{#if type === 'password'}
-	<div class="wrapper">
+<div class="wrapper">
+	{#if type === 'password'}
 		<label for={name} use:melt={$root}>{label}</label>
-		<input type="password" id={name} />
-	</div>
-{:else}
-	<div class="wrapper">
+		<input type="password" id={name} {name} />
+	{:else}
 		<label for={name} use:melt={$root}>{label}</label>
-		<input type="text" id={name} />
+		<input type="text" id={name} {name} />
+	{/if}
+
+	<div class="error" class:visible={!!error}>
+		{error}
 	</div>
-{/if}
+</div>
 
 <style>
 	.wrapper {
@@ -31,5 +34,16 @@
 	label {
 		display: block;
 		margin-bottom: 4px;
+	}
+
+	.error {
+		color: red;
+		font-size: 12px;
+		height: 12px;
+		visibility: hidden;
+	}
+
+	.error.visible {
+		visibility: visible;
 	}
 </style>
