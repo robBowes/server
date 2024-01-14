@@ -13,6 +13,5 @@ pkgs.mkShell {
     pkgs.caddy
     pkgs.qrencode
     pkgs.wireguard-tools
-    pkgs.wireguard-go
   ];
 }
