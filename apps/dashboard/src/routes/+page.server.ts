@@ -1,5 +1,5 @@
 import { fail, type Actions, redirect } from '@sveltejs/kit';
-import { db } from '../lib/db/connection';
+import { auth } from 'db';
 import { createHash } from 'node:crypto';
 
 export const load = async () => {
@@ -14,7 +14,7 @@ export const actions = {
 
 		const entries = Object.fromEntries(data.entries());
 
-		if (!entries.email) {
+		if (!entries.email || typeof entries.email !== 'string') {
 			return fail(400, { email: 'Email is required' });
 		}
 
@@ -22,24 +22,13 @@ export const actions = {
 			return fail(400, { message: 'Password is required' });
 		}
 
-		const user = await db
-			.selectFrom('user')
-			.where('email', '=', entries.email)
-			.where('password', '=', createHash('sha256').update(entries.password).digest('hex'))
-			.selectAll()
-			.executeTakeFirst();
+		const user = await auth.validatePassword(entries.email, entries.password);
 
 		if (!user) {
 			return fail(401, { message: 'invalid credentials' });
 		}
 
-		const session = await db
-			.insertInto('session')
-			.values({
-				user_id: user.id
-			})
-			.returningAll()
-			.executeTakeFirstOrThrow();
+		const session = await auth.createSession(user.id);
 
 		cookies.set('session_id', session.id, {
 			httpOnly: true,

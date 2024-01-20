@@ -1,17 +1,13 @@
-import { db } from '$lib/db/connection';
+import { auth } from 'db';
 import { redirect } from '@sveltejs/kit';
 
 export const load = async ({ cookies }) => {
-	const session_id = cookies.get('session_id');
+	const sessionId = cookies.get('session_id');
 
-	if (!session_id) {
+	if (!sessionId) {
 		throw redirect(302, '/');
 	}
-	const session = await db
-		.selectFrom('session')
-		.where('id', '=', session_id)
-		.selectAll()
-		.executeTakeFirst();
+	const session = await auth.getSession(sessionId);
 
 	if (!session) {
 		throw redirect(302, '/');
