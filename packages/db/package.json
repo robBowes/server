@@ -1,0 +1,30 @@
+{
+	"name": "db",
+	"version": "1.0.0",
+	"description": "",
+	"exports": {
+		".": "./src/data-access/index.ts"
+	},
+	"main": "./src/data-access/index.ts",
+	"types": "./src/data-access/index.ts",
+	"scripts": {
+		"migrate:up": "tsx ./src/run-migrations.ts",
+		"check": "tsc --noEmit",
+		"typegen": "kysely-codegen --dialect=postgres"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"typescript": "^5.3.3",
+		"kysely": "^0.27.2",
+		"pg": "^8.11.3"
+	},
+	"devDependencies": {
+		"@types/node": "^18.19.8",
+		"kysely-codegen": "^0.11.0",
+		"@types/pg": "^8.10.2",
+		"tsx": "^4.7.0"
+	}
+}
