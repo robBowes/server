@@ -7,9 +7,9 @@
 FROM node:alpine as builder
 WORKDIR '/app'
 RUN npm install -g pnpm
-COPY package.json .
-RUN pnpm install
 COPY . .
+RUN pnpm install
+RUN pnpm exec turbo prune --scope=sveltekit --docker
 RUN pnpm run build
 
 # Runtime layer
@@ -18,7 +18,7 @@ WORKDIR '/app'
 RUN npm install -g pnpm
 COPY --from=builder /app/package.json .
 RUN pnpm install --production
-COPY --from=builder /app/build ./build
+COPY --from=builder /app/apps/dashboard/build ./build
 CMD ["node", "build"]
 
 # docker build -t sveltekit-app .
