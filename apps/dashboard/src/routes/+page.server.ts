@@ -1,11 +1,16 @@
 import { fail, type Actions, redirect } from '@sveltejs/kit';
 import { auth } from 'db';
-import { createHash } from 'node:crypto';
 
-export const load = async () => {
-	// const tables = await db.introspection.getTables({ withInternalKyselyTables: true });
+export const load = async ({ cookies }) => {
+	const sessionId = cookies.get('session_id');
 
-	console.log(createHash('sha256').update('This1thing').digest('hex'));
+	if (sessionId) {
+		const session = await auth.getSession(sessionId);
+
+		if (session) {
+			throw redirect(302, '/dashboard');
+		}
+	}
 };
 
 export const actions = {
