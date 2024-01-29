@@ -1,7 +1,8 @@
-node_modules
+node_modules/
 .svelte-kit/
 build
 .direnv
 # Turbo
 .turbo
 .env
+out/

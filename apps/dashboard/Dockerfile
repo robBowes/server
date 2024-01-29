@@ -9,17 +9,29 @@ WORKDIR '/app'
 RUN npm install -g pnpm
 COPY . .
 RUN pnpm install
-RUN pnpm exec turbo prune --scope=sveltekit --docker
-RUN pnpm run build
+RUN pnpm exec turbo prune --scope=dashboard --docker
 
 # Runtime layer
-FROM node:alpine
+FROM node:alpine as installer
 WORKDIR '/app'
 RUN npm install -g pnpm
-COPY --from=builder /app/package.json .
+COPY .gitignore .gitignore
+RUN mkdir -p ./out/full
+COPY --from=builder /app/out/json .
+COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+
+# build the project
+COPY --from=builder /app/out/full/ .
+RUN pnpm install
+RUN pnpm --filter dashboard build
+
+FROM node:alpine as runner
+
+WORKDIR '/app'
+COPY --from=installer /app/ .
+RUN npm install -g pnpm
 RUN pnpm install --production
-COPY --from=builder /app/apps/dashboard/build ./build
-CMD ["node", "build"]
+CMD ["node", "./apps/dashboard/build/index.js"]
 
 # docker build -t sveltekit-app .
 # docker run -p 3000:3000 sveltekit-app

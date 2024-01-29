@@ -15,7 +15,9 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
   sveltekit:
-    build: ./apps/dashboard
+    build:
+      context: .
+      dockerfile: ./apps/dashboard/Dockerfile
     container_name: sveltekit
     restart: always
     ports:
