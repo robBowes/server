@@ -10,8 +10,8 @@
 {
   imports = [
     # include NixOS-WSL modules
-    <nixos-wsl/modules>
- <home-manager/nixos>
+  #  <nixos-wsl/modules>
+# <home-manager/nixos>
   ];
 
   wsl.enable = true;
@@ -31,6 +31,7 @@
     python314
     cudaPackages.cudnn
     code-cursor
+    claude-code
   ];
     programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
