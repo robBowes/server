@@ -18,6 +18,20 @@
     system = "x86_64-linux"; # aarch64-linux on ARM
     pkgs = import nixpkgs { inherit system; };
   in {
+    devShells.${system}.default = pkgs.mkShell {
+      buildInputs = [
+        pkgs.nodejs_24
+        pkgs.postgresql_15
+        pkgs.nodePackages.pnpm
+        pkgs.tmux
+        pkgs.docker
+        pkgs.docker-compose
+        pkgs.caddy
+        pkgs.qrencode
+        pkgs.wireguard-tools
+      ];
+    };
+
     nixosConfigurations = {
       # Use your host name here if you want to run `--flake .` without `#name`
       nixos = nixpkgs.lib.nixosSystem {

@@ -66,11 +66,9 @@ The repo uses **direnv** with a Nix flake. The `.envrc` auto-loads the Nix shell
 ```bash
 # If not using direnv, manually enter shell:
 nix develop                     # Use flake-based dev environment
-# or
-nix-shell                       # Use legacy shell.nix
 ```
 
-Nix provides: Node.js 18, PostgreSQL 15, pnpm, Docker, Caddy, WireGuard tools.
+Nix provides: Node.js 24, PostgreSQL 15, pnpm, tmux, Docker, Caddy, WireGuard tools.
 
 ## Architecture Notes
 
