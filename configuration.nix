@@ -34,6 +34,7 @@
     cudaPackages.cudnn
     code-cursor
     claude-code
+    gh
   ];
     programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
