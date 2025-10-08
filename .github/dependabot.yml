@@ -1,0 +1,55 @@
+version: 2
+updates:
+  # Enable version updates for npm (pnpm workspace)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    groups:
+      # Group dev dependencies together
+      dev-dependencies:
+        patterns:
+          - "@types/*"
+          - "eslint*"
+          - "prettier"
+          - "vitest"
+          - "playwright"
+          - "typescript"
+        update-types:
+          - "minor"
+          - "patch"
+      # Group SvelteKit related packages
+      sveltekit:
+        patterns:
+          - "@sveltejs/*"
+          - "svelte"
+          - "vite"
+        update-types:
+          - "minor"
+          - "patch"
+    # Automatically merge minor and patch updates for dev dependencies
+    labels:
+      - "dependencies"
+      - "automated"
+
+  # Monitor GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  # Monitor Docker base images
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "docker"
