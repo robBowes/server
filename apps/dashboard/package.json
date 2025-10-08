@@ -27,7 +27,7 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.9.3",
 		"vite": "^4.5.3",
-		"vitest": "^0.32.2"
+		"vitest": "^3.2.4"
 	},
 	"node": ">=18",
 	"scripts": {
