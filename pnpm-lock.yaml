@@ -94,8 +94,8 @@ importers:
   packages/db:
     dependencies:
       kysely:
-        specifier: ^0.27.2
-        version: 0.27.2
+        specifier: ^0.28.7
+        version: 0.28.7
       pg:
         specifier: ^8.11.3
         version: 8.11.3
@@ -111,7 +111,7 @@ importers:
         version: 8.10.2
       kysely-codegen:
         specifier: ^0.11.0
-        version: 0.11.0(kysely@0.27.2)(pg@8.11.3)
+        version: 0.11.0(kysely@0.28.7)(pg@8.11.3)
       tsx:
         specifier: ^4.7.0
         version: 4.7.0
@@ -2364,7 +2364,7 @@ packages:
     resolution: {integrity: sha512-9pSL5XB4J+ifHP0e0jmmC98OGC1nL8/JjS+fi6mnTlIf//yt/MfVLtKg7S6nCtj/8KTcWX7nRlY0XywoYY1ISQ==}
     dev: true
 
-  /kysely-codegen@0.11.0(kysely@0.27.2)(pg@8.11.3):
+  /kysely-codegen@0.11.0(kysely@0.28.7)(pg@8.11.3):
     resolution: {integrity: sha512-8aklzXygjANshk5BoGSQ0BWukKIoPL4/k1iFWyteGUQ/VtB1GlyrELBZv1GglydjLGECSSVDpsOgEXyWQmuksg==}
     hasBin: true
     peerDependencies:
@@ -2386,15 +2386,15 @@ packages:
       chalk: 4.1.2
       dotenv: 16.3.1
       git-diff: 2.0.6
-      kysely: 0.27.2
+      kysely: 0.28.7
       micromatch: 4.0.5
       minimist: 1.2.8
       pg: 8.11.3
     dev: true
 
-  /kysely@0.27.2:
-    resolution: {integrity: sha512-DmRvEfiR/NLpgsTbSxma2ldekhsdcd65+MNiKXyd/qj7w7X5e3cLkXxcj+MypsRDjPhHQ/CD5u3Eq1sBYzX0bw==}
-    engines: {node: '>=14.0.0'}
+  /kysely@0.28.7:
+    resolution: {integrity: sha512-u/cAuTL4DRIiO2/g4vNGRgklEKNIj5Q3CG7RoUB5DV5SfEC2hMvPxKi0GWPmnzwL2ryIeud2VTcEEmqzTzEPNw==}
+    engines: {node: '>=20.0.0'}
 
   /levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
