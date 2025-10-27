@@ -22,7 +22,7 @@
 		"pg": "^8.11.3"
 	},
 	"devDependencies": {
-		"@types/node": "^24.7.0",
+		"@types/node": "^24.9.1",
 		"kysely-codegen": "^0.11.0",
 		"@types/pg": "^8.10.2",
 		"tsx": "^4.7.0"
